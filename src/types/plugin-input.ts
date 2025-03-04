@@ -95,6 +95,16 @@ export const pluginSettingsSchema = T.Object(
       { default: {} }
     ),
     basePriceMultiplier: T.Number({ examples: [1.5], default: 1, description: "The base price multiplier for all tasks" }),
+    aiEstimation: T.Optional(
+      T.Object({
+        enabled: T.Boolean({ default: false, description: "Whether to use AI for time estimation" }),
+        openaiApiKey: T.String({ description: "API key (OpenAI key for fine-tuned models, OpenRouter key otherwise)" }),
+        modelName: T.String({
+          default: "anthropic/sonnet-3.7",
+          description: "Model name (OpenAI fine-tuned model ID or model identifier for OpenRouter)",
+        }),
+      })
+    ),
     shouldFundContributorClosedIssue: T.Boolean({ default: false, description: "Whether to allow funding contributor closed issues" }),
   },
   { default: {} }
